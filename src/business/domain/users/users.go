@@ -155,6 +155,7 @@ func (u *users) Update(ctx context.Context, param entity.Users) (entity.Users, e
 
 	return param, nil
 }
+
 func (u *users) Delete(ctx context.Context, param entity.Users) (entity.Users, error) {
 	tx, err := u.db.Leader().BeginTx(ctx, "txDeleteUsers", sql.TxOptions{})
 	if err != nil {
