@@ -7,7 +7,8 @@ type Users struct {
 	Username  string    `json:"username" db:"username,omitempty" param:"username"`
 	Email     string    `json:"email" db:"email,omitempty" param:"email"`
 	Password  string    `json:"password" db:"password,omitempty" param:"password"`
-	Role      string    `json:"role" db:"role,omitempty" param:"role"`
+	Pincode   string    `json:"pincode" db:"pincode,omitempty" param:"pincode"`
+	RoleID    int64     `json:"role_id" db:"role_id,omitempty" param:"role_id"`
 	IsActive  int64     `json:"is_active" db:"is_active,omitempty" param:"is_active"`
 	IsDeleted int64     `db:"is_deleted" json:"is_deleted,omitempty" param:"is_deleted"`
 	CreatedAt time.Time `db:"created_at" json:"created_at,omitempty" param:"created_at"`
