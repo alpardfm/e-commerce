@@ -4,7 +4,8 @@ CREATE TABLE `users` (
     `username` VARCHAR(50) NOT NULL UNIQUE,
     `email` VARCHAR(100) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
-    `role` ENUM('customer', 'admin') DEFAULT 'customer',
+    `pincode` VARCHAR(255) NOT NULL,
+    `role_id` INT,
     `is_active` INT DEFAULT 0,
     
     -- Utility columns
@@ -16,6 +17,55 @@ CREATE TABLE `users` (
     `deleted_at` TIMESTAMP(6) NULL,
     `deleted_by` VARCHAR(50) NULL
 );
+
+DROP TABLE IF EXISTS `otp`;
+CREATE TABLE `otp` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT,
+    `code` VARCHAR(50) NOT NULL,
+
+    -- Utility columns
+    `created_at` TIMESTAMP(6) NOT NULL,
+    `created_by` VARCHAR(50) NOT NULL,
+    `updated_at` TIMESTAMP(6) NULL,
+    `updated_by` VARCHAR(50) NULL,
+    `is_deleted` TINYINT NOT NULL,
+    `deleted_at` TIMESTAMP(6) NULL,
+    `deleted_by` VARCHAR(50) NULL
+);
+
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` INT,
+
+    -- Utility columns
+    `created_at` TIMESTAMP(6) NOT NULL,
+    `created_by` VARCHAR(50) NOT NULL,
+    `updated_at` TIMESTAMP(6) NULL,
+    `updated_by` VARCHAR(50) NULL,
+    `is_deleted` TINYINT NOT NULL,
+    `deleted_at` TIMESTAMP(6) NULL,
+    `deleted_by` VARCHAR(50) NULL
+);
+
+DROP TABLE IF EXISTS `location`;
+CREATE TABLE `location` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `lat` VARCHAR(50),
+    `long` VARCHAR(50),
+    `distance` INT,
+    `secret` VARCHAR(255),
+
+    -- Utility columns
+    `created_at` TIMESTAMP(6) NOT NULL,
+    `created_by` VARCHAR(50) NOT NULL,
+    `updated_at` TIMESTAMP(6) NULL,
+    `updated_by` VARCHAR(50) NULL,
+    `is_deleted` TINYINT NOT NULL,
+    `deleted_at` TIMESTAMP(6) NULL,
+    `deleted_by` VARCHAR(50) NULL
+)
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -38,6 +88,7 @@ CREATE TABLE `products` (
     `category_id` INT,
     `name` VARCHAR(100) NOT NULL,
     `description` TEXT,
+    `discount_price` DECIMAL(10, 2) NOT NULL,
     `price` DECIMAL(10, 2) NOT NULL,
     `stock` INT NOT NULL,
     `image_url` VARCHAR(255),
@@ -58,6 +109,23 @@ CREATE TABLE `orders` (
     `user_id` INT,
     `total_price` DECIMAL(10, 2) NOT NULL,
     `status` ENUM('pending', 'paid', 'shipped', 'completed', 'canceled') DEFAULT 'pending',
+    
+    -- Utility columns
+    `created_at` TIMESTAMP(6) NOT NULL,
+    `created_by` VARCHAR(50) NOT NULL,
+    `updated_at` TIMESTAMP(6) NULL,
+    `updated_by` VARCHAR(50) NULL,
+    `is_deleted` TINYINT NOT NULL,
+    `deleted_at` TIMESTAMP(6) NULL,
+    `deleted_by` VARCHAR(50) NULL
+);
+
+DROP TABLE IF EXISTS `refund`;
+CREATE TABLE `refund` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT,
+    `order_id` INT,
+    `reason` VARCHAR(255),
     
     -- Utility columns
     `created_at` TIMESTAMP(6) NOT NULL,
