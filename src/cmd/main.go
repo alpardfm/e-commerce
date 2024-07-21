@@ -3,10 +3,16 @@ package main
 import (
 	"os"
 
-	config "github.com/alaprdfm/e-commerce/config/cfg/config"
+	"github.com/alpardfm/e-commerce/src/business/domain"
+	"github.com/alpardfm/e-commerce/src/business/usecase"
+	"github.com/alpardfm/e-commerce/src/handler/rest"
+	"github.com/alpardfm/e-commerce/src/utils/config"
 	"github.com/alpardfm/go-toolkit/configbuilder"
 	"github.com/alpardfm/go-toolkit/configreader"
 	"github.com/alpardfm/go-toolkit/files"
+	"github.com/alpardfm/go-toolkit/log"
+	"github.com/alpardfm/go-toolkit/parser"
+	"github.com/alpardfm/go-toolkit/sql"
 )
 
 const (
@@ -34,4 +40,27 @@ func main() {
 		ConfigFile: configfile,
 	})
 	configreader.ReadConfig(&cfg)
+
+	// init logger
+	log := log.Init(cfg.Log)
+
+	// init parser
+	parser := parser.InitParser(log, cfg.Parser)
+
+	//json paster
+	JSONParser := parser.JSONParser()
+
+	// init db conn
+	db := sql.Init(cfg.SQL, log)
+
+	// init all domain
+	d := domain.Init(log, db, JSONParser, cfg)
+
+	// init all uc
+	uc := usecase.Init(log, d, JSONParser, cfg)
+
+	// init and run http server
+	r := rest.Init(cfg, configreader, log, parser.JSONParser(), uc)
+	r.Run()
+
 }

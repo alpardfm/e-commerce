@@ -2,13 +2,13 @@
     "Meta": {
         "Title": "E-Commerce",
         "Description": "E-Commerce API Collection",
-        "Host": "localhost:8080",
+        "Host": "localhost:3001",
         "Basepath": "/",
         "Version": "localhost"
     },
     "Gin": {
         "Host": "localhost",
-        "Port": "8080",
+        "Port": "3001",
         "Mode": "debug",
         "Timeout": "100s",
         "ShutdownTimeout": "10s",
@@ -33,9 +33,6 @@
             "Enabled": "true",
             "Path": "/platform"
         }
-    },
-    "GQL": {
-        "Port": 4500
     },
     "Log": {
         "Level": "debug"
