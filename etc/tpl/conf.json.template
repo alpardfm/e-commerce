@@ -1,0 +1,103 @@
+{
+    "Meta": {
+        "Title": "E-Commerce Service",
+        "Description": "E-Commerce Service API Collection",
+        "Host": "{{ params.meta.host }}",
+        "Basepath": "/",
+        "Version": ""
+    },
+    "Gin": {
+        "Host": "{{ params.http.host }}",
+        "Port": "{{ params.http.port }}",
+        "Mode": "{{ params.http.mode }}",
+        "Timeout": "{{ params.http.timeout }}",
+        "ShutdownTimeout": "10s",
+        "LogRequest": "{{ params.http.log.request }}",
+        "LogResponse": "{{ params.http.log.response }}",
+        "CORS": {
+            "Mode": "{{ params.http.cors.mode }}"
+        },
+        "Meta": "$ref:#/Meta",
+        "Swagger": {
+            "Basicauth": {
+                "Password": "{{ creds.http.swagger.password }}",
+                "Username": "{{ creds.http.swagger.username }}"
+            },
+            "Enabled": "{{ params.http.swagger.enabled }}",
+            "Path": "{{ params.http.swagger.path }}"
+        },
+        "Platform": {
+            "BasicAuth": {
+                "Password": "{{ creds.http.platform.password }}",
+                "Username": "{{ creds.http.platform.username }}"
+            },
+            "Enabled": "{{ params.http.platform.enabled }}",
+            "Path": "{{ params.http.platform.path }}"
+        },
+        "Dummy": {
+            "Enabled": "{{ params.http.dummy.enabled }}",
+            "Path": "{{ params.http.dummy.path }}"
+        },
+        "Instrument": {
+            "Metrics": {
+                "Enabled": "{{ params.instrument.metrics.enabled }}",
+                "Path": "{{ params.http.instrument.metrics.path }}",
+                "BasicAuth": {
+                    "Username": "{{ creds.http.instrument.metrics.username }}",
+                    "Password": "{{ creds.http.instrument.metrics.password }}"
+                }
+            }
+        }
+    },
+    "Log": {
+        "Level": "{{ params.log.level }}"
+    },
+    "SQL": {
+        "UseInstrument": "{{ params.instrument.metrics.enabled }}",
+        "Driver": "{{ params.sql.driver }}",
+        "Follower": {
+            "Host": "{{ creds.sql.host }}",
+            "Port": "{{ creds.sql.port }}",
+            "DB": "{{ creds.sql.database }}",
+            "User": "{{ creds.sql.username }}",
+            "Password": "{{ creds.sql.password }}",
+            "SSL": null,
+            "Schema": null,
+            "Options": {
+                "MaxLifeTime": null,
+                "MaxIdle": "{{ params.sql.options.maxidle }}",
+                "MaxOpen": "{{ params.sql.options.maxopen }}"
+             }
+        },
+        "Leader": {
+            "Host": "{{ creds.sql.host }}",
+            "Port": "{{ creds.sql.port }}",
+            "DB": "{{ creds.sql.database }}",
+            "User": "{{ creds.sql.username }}",
+            "Password": "{{ creds.sql.password }}",
+            "SSL": null,
+            "Schema": null,
+            "Options": {
+                "MaxLifeTime": null,
+                "MaxIdle": "{{ params.sql.options.maxidle }}",
+                "MaxOpen": "{{ params.sql.options.maxopen }}"
+             }
+        }
+    },
+    "Parser": {
+        "JSONOptions": {
+            "Config": "default",
+            "IndentionStep": "0",
+            "MarshalFloatWith6Digits": false,
+            "EscapeHTML": true,
+            "SortMapKeys": false,
+            "UseNumber": true,
+            "DisallowUnknownFields": false,
+            "TagKey": "json",
+            "OnlyTaggedField": true,
+            "ValidateJSONRawMessage": true,
+            "ObjectFieldMustBeSimpleString": false,
+            "CasesenSitive": true
+        }
+    }
+}

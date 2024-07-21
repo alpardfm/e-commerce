@@ -1,0 +1,90 @@
+{
+    "Meta": {
+        "Title": "E-Commerce",
+        "Description": "E-Commerce API Collection",
+        "Host": "localhost:8080",
+        "Basepath": "/",
+        "Version": "localhost"
+    },
+    "Gin": {
+        "Host": "localhost",
+        "Port": "8080",
+        "Mode": "debug",
+        "Timeout": "100s",
+        "ShutdownTimeout": "10s",
+        "LogRequest": "true",
+        "LogResponse": "true",
+        "CORS": {
+            "Mode": "allowall"
+        },
+        "Swagger": {
+            "Basicauth": {
+                "Password": "swagger",
+                "Username": "alpardfm"
+            },
+            "Enabled": "true",
+            "Path": "/swagger"
+        },
+        "Platform": {
+            "BasicAuth": {
+                "Password": "platform",
+                "Username": "alpardfm"
+            },
+            "Enabled": "true",
+            "Path": "/platform"
+        }
+    },
+    "GQL": {
+        "Port": 4500
+    },
+    "Log": {
+        "Level": "debug"
+    },
+    "SQL": {
+        "Driver": "mysql",
+        "Follower": {
+            "Host": "localhost",
+            "Port": "3306",
+            "DB": "ecommerce",
+            "User": "root",
+            "Password": "",
+            "SSL": null,
+            "Schema": null,
+            "Options": {
+                "MaxLifeTime": null,
+                "MaxIdle": null,
+                "MaxOpen": null
+            }
+        },
+        "Leader": {
+            "Host": "localhost",
+            "Port": "3306",
+            "DB": "ecommerce",
+            "User": "root",
+            "Password": "",
+            "SSL": null,
+            "Schema": null,
+            "Options": {
+                "MaxLifeTime": null,
+                "MaxIdle": null,
+                "MaxOpen": null
+            }
+        }
+    },
+    "Parser": {
+        "JSONOptions": {
+            "Config": "default",
+            "IndentionStep": "0",
+            "MarshalFloatWith6Digits": false,
+            "EscapeHTML": true,
+            "SortMapKeys": false,
+            "UseNumber": true,
+            "DisallowUnknownFields": false,
+            "TagKey": "json",
+            "OnlyTaggedField": true,
+            "ValidateJSONRawMessage": true,
+            "ObjectFieldMustBeSimpleString": false,
+            "CasesenSitive": true
+        }
+    }
+}
