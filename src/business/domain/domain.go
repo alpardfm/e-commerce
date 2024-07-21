@@ -1,14 +1,19 @@
 package domain
 
 import (
+	"github.com/alpardfm/e-commerce/src/business/domain/users"
 	"github.com/alpardfm/e-commerce/src/utils/config"
 	"github.com/alpardfm/go-toolkit/log"
 	"github.com/alpardfm/go-toolkit/parser"
 	"github.com/alpardfm/go-toolkit/sql"
 )
 
-type Domains struct{}
+type Domains struct {
+	Users users.Interface
+}
 
 func Init(log log.Interface, db sql.Interface, parser parser.JSONInterface, cfg config.Application) *Domains {
-	return &Domains{}
+	return &Domains{
+		Users: users.Init(log, db),
+	}
 }
