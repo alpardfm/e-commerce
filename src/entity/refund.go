@@ -3,10 +3,11 @@ package entity
 import "time"
 
 type Refund struct {
-	ID        int64     `json:"id" db:"id,omitempty" param:"id"`
-	UserID    int64     `json:"user_id" db:"user_id,omitempty" param:"user_id"`
-	OrderID   int64     `json:"order_id" db:"order_id,omitempty" param:"order_id"`
-	Reason    string    `json:"reason" db:"reason,omitempty" param:"reason"`
+	ID        int64     `db:"id" json:"id,omitempty" param:"id"`
+	UserID    int64     `db:"user_id" json:"user_id,omitempty" param:"user_id"`
+	OrderID   int64     `db:"order_id" json:"order_id,omitempty" param:"order_id"`
+	Reason    string    `db:"reason" json:"reason,omitempty" param:"reason"`
+	Status    string    `db:"status" json:"status,omitempty" param:"status"`
 	IsDeleted int64     `db:"is_deleted" json:"is_deleted,omitempty" param:"is_deleted"`
 	CreatedAt time.Time `db:"created_at" json:"created_at,omitempty" param:"created_at"`
 	CreatedBy string    `db:"created_by" json:"created_by,omitempty" param:"created_by"`

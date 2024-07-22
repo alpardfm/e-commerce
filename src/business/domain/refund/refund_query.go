@@ -6,6 +6,7 @@ const (
 		user_id,
 		order_id,
 		reason,
+		status,
 		created_at,
 		created_by,
 		is_deleted
@@ -14,6 +15,7 @@ const (
 		:user_id,
 		:order_id,
 		:reason,
+		:status,
 		:created_at,
 		:created_by,
 		:is_deleted
@@ -26,6 +28,7 @@ const (
 		user_id = :user_id,
 		order_id = :order_id,
 		reason = :reason,
+		status = :status,
 		updated_at = :updated_at,
 		updated_by = :updated_by,
 		is_deleted = :is_deleted
@@ -38,6 +41,7 @@ const (
 		user_id,
 		order_id,
 		reason,
+		status,
 		created_at,
 	    created_by,
 	    COALESCE(updated_at, TIMESTAMP("01-01-0001")) as updated_at,

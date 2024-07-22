@@ -83,5 +83,10 @@
             "ObjectFieldMustBeSimpleString": false,
             "CasesenSitive": true
         }
+    },
+    "JWT": {
+        "JWTTokenExpirationInMinute": 2592000,
+        "DashboardJWTTokenExpirationMinute": 3600,
+        "JWTTokenKey": "12345678901234567890123456789012"
     }
 }

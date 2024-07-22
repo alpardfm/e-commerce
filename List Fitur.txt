@@ -1,0 +1,37 @@
+List API Dashboard Test Backend
+
+- Login Dashboard V
+- RUD users
+- CRUD role V
+- R Reviews
+- RU Refund
+- CRUD Product
+- R OTP
+- RU Orders (With Order Items and Payment)
+- CRUD Location V
+- CRUD Categories V
+
+
+List API Mobile Test Backend
+
+- Login
+- Register
+- Kirim OTP
+- Verif OTP
+- Cek Pincode
+- Reset Pincode
+- Update Pincode
+- Reset Password
+- Update Profile
+- Get List Category
+- Search Category By Name
+- Get List Product By Category
+- Search Product By Name
+- Detail Product
+- CRUD Cart
+- Create Order And Payment
+- Read Order By Status And Payment
+- Create Refund
+- Read Refund
+- Update Status Order
+- Read And Add Reviews

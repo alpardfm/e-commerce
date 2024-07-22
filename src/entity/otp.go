@@ -3,9 +3,9 @@ package entity
 import "time"
 
 type OTP struct {
-	ID        int64     `json:"id" db:"id,omitempty" param:"id"`
-	UserID    int64     `json:"user_id" db:"user_id,omitempty" param:"user_id"`
-	Code      string    `json:"code" db:"code,omitempty" param:"omitempty"`
+	ID        int64     `db:"id" json:"id,omitempty" param:"id"`
+	UserID    int64     `db:"user_id" json:"user_id,omitempty" param:"user_id"`
+	Code      string    `db:"code" json:"code,omitempty" param:"omitempty"`
 	IsDeleted int64     `db:"is_deleted" json:"is_deleted,omitempty" param:"is_deleted"`
 	CreatedAt time.Time `db:"created_at" json:"created_at,omitempty" param:"created_at"`
 	CreatedBy string    `db:"created_by" json:"created_by,omitempty" param:"created_by"`

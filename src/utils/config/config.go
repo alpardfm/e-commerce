@@ -13,6 +13,7 @@ type Application struct {
 	Meta   ApplicationMeta
 	Gin    GinConfig
 	SQL    sql.Config
+	JWT    JWTConfig
 	Parser parser.Options
 }
 
@@ -59,6 +60,12 @@ type DummyConfig struct {
 type BasicAuthConf struct {
 	Username string
 	Password string
+}
+
+type JWTConfig struct {
+	JWTTokenExpirationInMinute        int64
+	DashboardJWTTokenExpirationMinute int64
+	JWTTokenKey                       string
 }
 
 func Init() Application {

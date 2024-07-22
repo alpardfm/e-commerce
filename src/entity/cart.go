@@ -3,10 +3,10 @@ package entity
 import "time"
 
 type Cart struct {
-	ID        int64     `json:"id" db:"id,omitempty" param:"id"`
-	UserID    int64     `json:"user_id" db:"user,omitempty" param:"user_id"`
-	ProductID int64     `json:"product_id" db:"product_id,omitempty" param:"product_id"`
-	Quantity  int64     `json:"quantity" db:"quantity,omitempty" param:"quantity"`
+	ID        int64     `db:"id" json:"id,omitempty" param:"id"`
+	UserID    int64     `db:"user_id" json:"user,omitempty" param:"user_id"`
+	ProductID int64     `db:"product_id" json:"product_id,omitempty" param:"product_id"`
+	Quantity  int64     `db:"quantity" json:"quantity,omitempty" param:"quantity"`
 	IsDeleted int64     `db:"is_deleted" json:"is_deleted,omitempty" param:"is_deleted"`
 	CreatedAt time.Time `db:"created_at" json:"created_at,omitempty" param:"created_at"`
 	CreatedBy string    `db:"created_by" json:"created_by,omitempty" param:"created_by"`

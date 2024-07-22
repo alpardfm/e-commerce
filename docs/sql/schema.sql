@@ -126,6 +126,7 @@ CREATE TABLE `refund` (
     `user_id` INT,
     `order_id` INT,
     `reason` VARCHAR(255),
+    `status` ENUM('pending','accept','reject') DEFAULT 'pending',
     
     -- Utility columns
     `created_at` TIMESTAMP(6) NOT NULL,
