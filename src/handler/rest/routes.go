@@ -20,7 +20,7 @@ func (r *rest) Register() {
 	r.http.GET("/api/location/:id", r.GetDetailLocation)
 	r.http.POST("/api/location", r.CreateLocation)
 	r.http.PUT("/api/location/:id", r.UpdateLocation)
-	r.http.DELETE("/api/ocation/:id", r.DeleteLocation)
+	r.http.DELETE("/api/location/:id", r.DeleteLocation)
 
 	r.http.GET("/api/pagination/role", r.GetListRoleDashboard)
 	r.http.GET("/api/role/:id", r.GetDetailRole)
