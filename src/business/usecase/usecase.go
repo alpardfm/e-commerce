@@ -5,6 +5,7 @@ import (
 	"github.com/alpardfm/e-commerce/src/business/usecase/auth"
 	"github.com/alpardfm/e-commerce/src/business/usecase/categories"
 	"github.com/alpardfm/e-commerce/src/business/usecase/location"
+	"github.com/alpardfm/e-commerce/src/business/usecase/products"
 	"github.com/alpardfm/e-commerce/src/business/usecase/role"
 	"github.com/alpardfm/e-commerce/src/utils/config"
 	"github.com/alpardfm/go-toolkit/log"
@@ -16,6 +17,7 @@ type Usecases struct {
 	Location   location.Interface
 	Role       role.Interface
 	Auth       auth.Interface
+	Products   products.Interface
 }
 
 func Init(log log.Interface, d *domain.Domains, jsonParser parser.JSONInterface, cfg config.Application) *Usecases {
@@ -24,5 +26,6 @@ func Init(log log.Interface, d *domain.Domains, jsonParser parser.JSONInterface,
 		Location:   location.Init(log, cfg, d.Location, d.Role),
 		Role:       role.Init(log, cfg, d.Role),
 		Auth:       auth.Init(log, cfg, d.Users, d.Location, d.Role),
+		Products:   products.Init(log, cfg, d.Products),
 	}
 }

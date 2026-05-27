@@ -19,3 +19,16 @@ type Products struct {
 	DeletedAt     time.Time `db:"deleted_at" json:"deleted_at,omitempty" param:"deleted_at"`
 	DeletedBy     string    `db:"deleted_by" json:"deleted_by,omitempty" param:"deleted_by"`
 }
+
+type PaginationProducts struct {
+	Limit int64 `json:"limit"`
+	Page  int64 `json:"page"`
+}
+
+type ResponseProducts struct {
+	Limit      int64      `json:"limit"`
+	Page       int64      `json:"page"`
+	TotalRows  int64      `json:"total_rows"`
+	TotalPages int64      `json:"total_pages"`
+	Data       []Products `json:"data"`
+}

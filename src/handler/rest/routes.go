@@ -27,4 +27,11 @@ func (r *rest) Register() {
 	r.http.POST("/api/role", r.CreateRole)
 	r.http.PUT("/api/role/:id", r.UpdateRole)
 	r.http.DELETE("/api/role/:id", r.DeleteRole)
+
+	// Products
+	r.http.GET("/api/pagination/products", r.GetListProductsDashboard)
+	r.http.GET("/api/products/:id", r.GetDetailProducts)
+	r.http.POST("/api/products", r.CreateProducts)
+	r.http.PUT("/api/products/:id", r.UpdateProducts)
+	r.http.DELETE("/api/products/:id", r.DeleteProducts)
 }
