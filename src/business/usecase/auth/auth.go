@@ -17,6 +17,7 @@ import (
 	"github.com/alpardfm/go-toolkit/log"
 	"github.com/alpardfm/go-toolkit/tokens"
 	"github.com/dgrijalva/jwt-go/v4"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type Interface interface {
@@ -48,15 +49,20 @@ func Init(log log.Interface, cfg config.Application, userDom userDom.Interface, 
 }
 
 func (a *auth) LoginDashboard(ctx context.Context, paramB entity.AuthLoginDashboardBody, paramH entity.AuthLoginDashboardHeader) (entity.AuthLoginDashboardResponse, error) {
+	// Query user by email only (not password) for bcrypt comparison
 	user, err := a.dom.user.GetDetail(ctx, entity.Users{
-		Email:    paramB.Email,
-		Password: paramB.Password,
+		Email: paramB.Email,
 	})
 	if err != nil {
 		if errors.GetCode(err) == codes.CodeSQLRead {
 			return entity.AuthLoginDashboardResponse{}, errors.NewWithCode(codes.CodeUnauthorized, "Email Or Password Is Wrong")
 		}
 		return entity.AuthLoginDashboardResponse{}, err
+	}
+
+	// Compare password with bcrypt hash
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(paramB.Password)); err != nil {
+		return entity.AuthLoginDashboardResponse{}, errors.NewWithCode(codes.CodeUnauthorized, "Email Or Password Is Wrong")
 	}
 
 	loc, err := a.dom.location.GetDetail(ctx, entity.Location{
