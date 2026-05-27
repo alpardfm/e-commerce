@@ -8,7 +8,7 @@
 
 E-commerce REST API built with Go, Clean Architecture, and [go-toolkit](https://github.com/alpardfm/go-toolkit) — a personal utility library used across multiple projects.
 
-> 🚧 **Status:** In active development. Dashboard APIs complete, mobile APIs in progress.
+> 🚧 **Status:** In active development. Core APIs (auth, products, cart, orders) complete. Mobile APIs in progress.
 
 ---
 
@@ -16,7 +16,7 @@ E-commerce REST API built with Go, Clean Architecture, and [go-toolkit](https://
 
 - **Clean Architecture** — handler → usecase → domain → database, with interfaces at every boundary
 - **Powered by [go-toolkit](https://github.com/alpardfm/go-toolkit)** — uses own library for SQL, logging, JWT, config, error handling, query building
-- **Role-based access** — admin, librarian, member with JWT authorization
+- **Role-based access** — admin, librarian, member with JWT middleware (Bearer token)
 - **Location-based auth** — dashboard login validates coordinates via Haversine distance
 - **Swagger docs** — auto-generated API documentation
 - **12 domain modules** — users, products, categories, cart, orders, payments, refund, reviews, OTP, role, location, order items
@@ -102,23 +102,29 @@ This project uses [go-toolkit](https://github.com/alpardfm/go-toolkit) extensive
 
 | Method | Path | Description |
 |--------|------|-------------|
-| `POST` | `/api/loginDashboard` | Dashboard login (email + password + location) |
+| `POST` | `/api/loginDashboard` | Dashboard login (email + password + location + bcrypt) |
 | `GET` | `/api/pagination/categories` | List categories (paginated) |
 | `GET/POST/PUT/DELETE` | `/api/categories/:id` | CRUD categories |
 | `GET` | `/api/pagination/location` | List locations (paginated) |
 | `GET/POST/PUT/DELETE` | `/api/location/:id` | CRUD locations |
 | `GET` | `/api/pagination/role` | List roles (paginated) |
 | `GET/POST/PUT/DELETE` | `/api/role/:id` | CRUD roles |
+| `GET` | `/api/pagination/products` | List products (paginated) |
+| `GET/POST/PUT/DELETE` | `/api/products/:id` | CRUD products |
+| `GET/POST/PUT/DELETE` | `/api/cart/:id` | CRUD cart items |
+| `POST` | `/api/orders` | Create order + payment |
+| `GET` | `/api/orders` | List orders by user |
+| `PUT` | `/api/orders/:id/status` | Update order status |
 | `GET` | `/swagger/*` | Swagger UI |
 | `GET` | `/ping` | Health check |
 
+All protected routes require JWT Bearer token (middleware-enforced).
+
 ### Planned 🚧
 
-- Products CRUD
-- Cart CRUD
-- Orders + Payments flow
 - Mobile auth (register, OTP, pincode)
-- Reviews, Refund
+- Reviews CRUD
+- Refund flow
 
 ---
 
